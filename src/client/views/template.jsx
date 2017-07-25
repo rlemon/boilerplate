@@ -7,26 +7,21 @@ import IconButton from 'material-ui/IconButton';
 import { observable, action } from 'mobx';
 import { observer } from 'mobx-react';
 
+//const state = observable({open:false})
+
 @observer
 export default class Template extends React.Component {
-	@observable open = false;
+	@observable isRed = false;
 	constructor(props) {
 		super(props)
+		console.log(this.isRed);
 	}
 	@action toggleNavigation(event) {
-		this.open = !this.open;
-		console.log('this.open', this.open);
-	}
-
-	componentDidMount() {
-		this.toggleNavigation();
+		this.isRed = !this.isRed;
 	}
 
 	render() {
-		const {open} = this;
-		console.log('render');
-		return <div>
-			state is: {open ? 'open' : 'closed'}<br />
+		return <div style={{backgroundColor: this.isRed ? 'red' : 'blue'}}>
 			<button onClick={_ => this.toggleNavigation() }>toggle</button>
 		</div>
 	}
